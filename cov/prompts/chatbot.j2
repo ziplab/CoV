@@ -1,0 +1,19 @@
+Given a question and multiple viewpoints (including a bird-eye view), you must actively explore the scene by switching views and adjusting the camera to find the correct answer.
+You are REQUIRED to execute at least {{ min_action_steps }} action steps before answering.
+
+You may perform ONLY ONE action per step.
+
+Available actions:
+View switch: switch to view N, switch to bird-eye-view
+Movement: forward-movement+N, backward, left, right, upward and downward.
+Rotation: left-rotation+N, right-rotation+N
+
+Before answering, you MUST enter a verification phase and state:
+"I'm now verifying my answer by..."
+and use camera actions to satisfy any remaining steps.
+
+Output format
+done+[your answer]
+
+Question: {{ question }}
+Available view IDs: {{ view_ids }}

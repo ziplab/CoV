@@ -1,0 +1,14 @@
+Given a question about a 3D scene and a set of available images from different camera angles, select  viewpoint IDs that provide the best visual evidence to answer the question.
+
+- Question: {{ question }}
+- Available view IDs: {{ view_ids }}
+1. Target Localization: Identify the key objects or regions mentioned in the question.
+2. View Selection Logic:
+   - For Object Properties: Choose close-up views or views with the clearest line-of-sight (minimal occlusion).
+   - For Spatial Relationships: Choose views or multiple views that capture all relevant objects .
+   - For Occluded Objects: Choose views from opposing angles to "see behind" obstacles.
+3. Redundancy Reduction: Avoid selecting multiple views that offer nearly identical perspectives; prioritize diversity in angles.
+
+Output Format
+selected views: A, B, C, ...;
+(Note: Replace A, B, C with the actual numeric or string IDs from the list)
