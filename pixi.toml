@@ -8,7 +8,6 @@ version = "0.1.0"
 
 [dependencies]
 shortuuid = ">=1.0.13,<2"
-oss2 = ">=2.19.0,<3"
 jinja2 = ">=3.1.6,<4"
 python = "3.9.*"
 tqdm = ">=4.67.1,<5"
