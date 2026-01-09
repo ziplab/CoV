@@ -14,7 +14,7 @@ Embodied question answering (EQA) in 3D environments often requires collecting c
 ## Project Structure
 
 ```
-repo/
+.
 ├── cov/                      # Main package
 ├── scripts/                  # Utility scripts
 ├── tools/                    # Data processing tools
@@ -50,15 +50,15 @@ Create a `.env` file in the root directory with your API credentials:
 
 ```bash
 # OpenAI
-OPENAI_API_KEY=your_key_here
+OPENAI_API_KEY=[your_key_here]
 
 # OpenRouter
 OPENROUTER_API_BASE=https://openrouter.api.com/api/v1
-OPENROUTER_API_KEY=your_key_here
+OPENROUTER_API_KEY=[your_key_here]
 
 # Dashscop
 DASHSCOPE_API_BASE=https://dashscope.aliyuncs.com/compatible-mode/v1
-DASHSCOPE_API_KEY=your_key_here
+DASHSCOPE_API_KEY=[your_key_here]
 ```
 
 ### Prepare Dataset
