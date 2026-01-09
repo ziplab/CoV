@@ -5,7 +5,11 @@
 
 ![CoV Teaser](assets/teaser.jpg)
 
+Embodied question answering (EQA) in 3D environments often requires collecting context that is distributed across multiple viewpoints and partially occluded. However, most recent vision--language models (VLMs) are constrained to a fixed and finite set of input views, which limits their ability to acquire question-relevant context at inference time and hinders complex spatial reasoning. We propose Chain-of-View (CoV) prompting, a training-free, test-time reasoning framework that transforms a VLM into an active viewpoint reasoner through a coarse-to-fine exploration process. CoV first employs a View Selection agent to filter redundant frames and identify question-aligned anchor views. It then performs fine-grained view adjustment by interleaving iterative reasoning with discrete camera actions, obtaining new observations from the underlying 3D scene representation until sufficient context is gathered or a step budget is reached.
 
+## Updates
+
+* 2026-01-09 We release paper on [arXiv](https://arxiv.org/abs/2601.05172).
 
 ## Project Structure
 
@@ -38,12 +42,7 @@ pixi install
 pixi shell
 ```
 
-Key dependencies:
-- `habitat-sim==0.3.3` - 3D environment simulation
-- `litellm>=1.80.0` - Multi-LLM interface
-- `hydra-core>=1.3.2` - Configuration management
-- `jinja2>=3.1.6` - Prompt templating
-- `python-dotenv` - Environment variable management
+## How to Run
 
 ### Setup Environment Variables
 
@@ -64,33 +63,23 @@ DASHSCOPE_API_KEY=your_key_here
 
 ### Prepare Dataset
 
-1. Download the OpenEQA dataset
+1. Download the [OpenEQA](https://open-eqa.github.io/) dataset following the original dataset.
 2. Place question files in `data/` directory
 3. Place scene frames in `data/frames/` directory
 
-## Run evaluation
-
-### Basic Usage
+### Run experiment
 
 Run the agent on OpenEQA questions:
 
 ```bash
-python main.py
+# Specify models.
+python main.py model=qwen
+
+# Specify min_action_step
+python main.py model=qwen min_action_step=7
 ```
 
-### Configuration
-
-Configuration is managed through Hydra. Create config files in `conf/` or pass parameters directly:
-
-```bash
-# Use a specific model
-python main.py model=gpt
-
-# Use CoV agent
-python main.py agent=cov
-```
-
-### Available Models
+### Custom Models
 
 You can set your own model backend in [cov/config.py](cov/config.py).
 
@@ -102,7 +91,21 @@ Results are saved to the configured output directory with:
 - HTML reports showing navigation history and visualizations
 - Screenshots of selected views and bird's eye views
 
+### Run evaluation
+For evaluation, please follow the LLM-Match protocol from [OpenEQA](https://open-eqa.github.io/).
 
 ## Citation
 
 If you use Chain of View in your research, please cite this work.
+
+```
+@misc{zhao2026covchainofviewpromptingspatial,
+      title={CoV: Chain-of-View Prompting for Spatial Reasoning}, 
+      author={Haoyu Zhao and Akide Liu and Zeyu Zhang and Weijie Wang and Feng Chen and Ruihan Zhu and Gholamreza Haffari and Bohan Zhuang},
+      year={2026},
+      eprint={2601.05172},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2601.05172}, 
+}
+```
