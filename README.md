@@ -99,13 +99,10 @@ For evaluation, please follow the LLM-Match protocol from [OpenEQA](https://open
 If you use Chain of View in your research, please cite this work.
 
 ```
-@misc{zhao2026covchainofviewpromptingspatial,
-      title={CoV: Chain-of-View Prompting for Spatial Reasoning}, 
-      author={Haoyu Zhao and Akide Liu and Zeyu Zhang and Weijie Wang and Feng Chen and Ruihan Zhu and Gholamreza Haffari and Bohan Zhuang},
-      year={2026},
-      eprint={2601.05172},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2601.05172}, 
+@article{zhao2026cov,
+  title={CoV: Chain-of-View Prompting for Spatial Reasoning},
+  author={Zhao, Haoyu and Liu, Akide and Zhang, Zeyu and Wang, Weijie and Chen, Feng and Zhu, Ruihan and Haffari, Gholamreza and Zhuang, Bohan},
+  journal={arXiv preprint arXiv:2601.05172},
+  year={2026}
 }
 ```
