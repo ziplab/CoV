@@ -1,5 +1,15 @@
 # CoV: Chain-of-View Prompting for Spatial Reasoning
 
+This is the code repository for the paper:
+> **CoV: Chain-of-View Prompting for Spatial Reasoning**
+>
+> [Haoyu Zhao]()\*, [Akide Liu]()\*, [Zeyu Zhang](https://steve-zeyu-zhang.github.io/)\*, [Weijie Wang](https://lhmd.top/)\*, [Feng Chen](), [Ruihan Zhu](), [Gholamreza Haffari]() and [Bohan Zhuang](https://scholar.google.com/citations?user=DFuDBBwAAAAJ&hl=en)†
+>
+> \*Equal contribution. †Corresponding author.
+>
+> **[[arXiv]](https://arxiv.org/abs/2601.05172)** **[[Models]](https://huggingface.co/)** **[[HF Paper]](https://huggingface.co/papers/2601.05172)**
+> 
+
 
 ## Overview
 
