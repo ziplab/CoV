@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta
+    content="CoV is a multi-step reasoning Embodied QA agent framework that enables VLMs to actively acquire more question-relevant viewpoints."
+    name="description" />
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  <meta content="English" name="language" />
+  <title>CoV - A multi-step EQA Agent Framework</title>
+  <!-- Bootstrap -->
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="js/bootstrap-4.4.1.js"></script>
+  <link href="css/bootstrap-4.4.1.css" rel="stylesheet" />
+
+  <!-- Add-on -->
+  <script src="js/video-carousel.js"></script>
+  <script src="js/highlight-kw.js"></script>
+  <link href="css/highlight-kw.css" rel="stylesheet" />
+  <link href="css/theme.css" rel="stylesheet" />
+
+  <link href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" rel="stylesheet" />
+  <link href="assets/favicon.svg" rel="icon" sizes="any" type="image/svg+xml" />
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/contrib/auto-render.min.js"></script>
+
+  </link>
+</head>
+
+<body>
+
+  <!-- cover -->
+  <section>
+    <div class="jumbotron text-center mt-0">
+      <div class="container">
+
+        <div class="col-10" style="margin: auto;">
+          <h1 style="font-weight: bold">
+            <b>
+              <span style="color: #429dda">CoV</span>: Chain-of-View Prompting for Spatial Reasoning
+            </b>
+          </h1>
+
+          <hr>
+          <!-- Authors -->
+          Haoyu Zhao<sup>1*</sup>&nbsp;
+          Akide Liu<sup>2*</sup>&nbsp;
+          Zeyu Zhang<sup>2*</sup>&nbsp;
+          Weijie Wang<sup>1*</sup>&nbsp;
+          <br>
+          Feng Chen<sup>3</sup>&nbsp;
+          Ruihan Zhu<sup>1</sup>&nbsp;
+          Gholamreza Haffari<sup>2</sup>&nbsp;
+          Bohan Zhuang<sup>1</sup>
+          <p><sup>1</sup>ZIP Lab, Zhejiang University&nbsp;&nbsp;&nbsp;<sup>2</sup>Monash
+            University&nbsp;&nbsp;&nbsp;<sup>3</sup>AIML, Adelaide University
+          </p>
+          <p><sup>*</sup>Equal contribution<sup>
+
+              <!-- Links -->
+              <div class="row justify-content-center">
+                <div class="column">
+                  <p class="mb-5">
+                    <a class="btn btn-large btn-light" href="https://arxiv.org/abs/2601.05172" role="button">
+                      <i class="ai ai-arxiv"></i>
+                      <b>Paper</b>
+                    </a>
+                  </p>
+                </div>
+                <div class="column">
+                  <p class="mb-5">
+                    <a class="btn btn-large btn-light" href="https://github.com/ziplab/CoV" role="button">
+                      <i class="fas fa-code"></i>
+                      <b>Code</b>
+                    </a>
+                  </p>
+                </div>
+              </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+
+  <!-- YouTube Video Section -->
+  <!-- <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-10" style="margin: auto;">
+          <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin: 20px 0;">
+            <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 10px;"
+              src="https://www.youtube.com/embed/rPWpHAq9ph8" title="VolSplat Video" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-10" style="margin: auto;">
+          <h3>Introduction</h3>
+          <hr style="margin-top: 0px" />
+
+          <img src="assets/teaser.png" width="100%" />
+          <br><br>
+
+          <p class="text-left">
+            Embodied question answering (EQA) in 3D environments often requires collecting context that is distributed
+            across multiple viewpoints and partially occluded.
+            However, most recent vision--language models (VLMs) are constrained to a fixed and finite set of input
+            views, which limits their ability to acquire question-relevant context at inference time and hinders complex
+            spatial reasoning.
+            We propose <strong>Chain-of-View (CoV) prompting</strong>, a <strong>training-free, test-time</strong>
+            reasoning framework that transforms a VLM into an active viewpoint reasoner through a coarse-to-fine
+            exploration process.
+            CoV first employs a <strong>View Selection</strong> agent to filter redundant frames and identify
+            question-aligned anchor views.
+            It then performs <strong>fine-grained view adjustment</strong> by interleaving iterative reasoning with
+            discrete camera actions, obtaining new observations from the underlying 3D scene representation until
+            sufficient context is gathered or a step budget is reached.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Methods -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-10" style="margin: auto;">
+
+          <h3>Pipeline</h3>
+          <hr style="margin-top: 0px" />
+          <div style="display: flex; justify-content: center;">
+            <img src="assets/pipeline.png" width="100%" />
+          </div>
+          <br><br>
+
+          <p>
+            <strong>Coarse-grained View Selection.</strong>
+            In real-world scenarios, an agent’s visual input typically comes from a continuous video stream, where the
+            raw frames often contain substantial redundancy.
+            Only a small subset of frames is usually relevant, while excessive irrelevant visual information can instead
+            distract the model.
+            We introduce a coarse-grained view selection agent aiming to
+            actively identify and select the key viewpoints most relevant to the current question from the available raw
+            views, thereby providing a strongly question-aligned visual basis for subsequent reasoning steps.
+          </p>
+
+          <p>
+            <strong>Fine-grained View Adjustment.</strong>
+            Inspired by chain-of-thought (CoT) reasoning, we introduce a fine-grained view adjustment mechanism.
+            Starting from the visual anchors obtained in the coarse-grained view selection stage, the VLM plans and
+            executes a sequence of view adjustment actions, including translations, rotations, and switching between
+            different viewpoints.
+            Once the agent determines that sufficient information has been gathered to answer the question, it
+            terminates the view adjustment process and produces the final answer based on the carefully constructed
+            visual context.
+
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-10" style="margin: auto;">
+
+          <h3>Evaluation</h3>
+          <hr style="margin-top: 0px" />
+
+          <div class="row" style="margin: 20px 0;">
+            <div class="col-md-6 text-center">
+              <img src="assets/table-1.png" alt="Table 1" style="max-width: 100%; height: auto; margin-bottom: 30px;">
+            </div>
+            <div class="col-md-6 text-center">
+              <img src="assets/table-2.png" alt="Table 2" style="max-width: 100%; height: auto; margin-bottom: 30px;">
+            </div>
+          </div>
+
+          <br>
+        </div>
+      </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-10" style="margin: auto;">
+
+          <h3>Test-time Scaling</h3>
+          <hr style="margin-top: 0px" />
+
+          <div class="row" style="margin: 20px 0;">
+            <div class="col-md-6 text-center">
+              <img src="assets/step-dist.png" alt="Step Distribution" style="max-width: 100%; height: auto;">
+            </div>
+            <div class="col-md-6 text-center">
+              <img src="assets/scaling.png" alt="Scaling" style="max-width: 100%; height: auto;">
+            </div>
+          </div>
+
+          <p>
+            Inspired by the budget forcing strategy used in <a href="https://arxiv.org/abs/2501.19393"
+              target="_blank">S1</a>, we set a lower bound on the number of action steps in
+            the CoV agent’s prompt template.
+            Compared to setting the minimum number of action steps to 1, increasing the action-step limit yields an
+            average improvement of 2.51%.
+          </p>
+
+          <br>
+        </div>
+      </div>
+  </section>
+
+  <!-- Citing -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10" style="margin: auto;">
+
+        <h3>Citation</h3>
+        <hr style="margin-top: 0px" />
+        <div style="position: relative;">
+          <button id="copyBtn" onclick="copyBibTeX()"
+            style="position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #429dda; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px;">
+            Copy
+          </button>
+          <pre id="bibtex" style="background-color: #e9eeef; padding: 1.5em 1.5em; border-radius: 15px; margin: 0;"><code>@article{zhao2026cov,
+  title={CoV: Chain-of-View Prompting for Spatial Reasoning},
+  author={Zhao, Haoyu and Liu, Akide and Zhang, Zeyu and Wang, Weijie and Chen, Feng and Zhu, Ruihan and Haffari, Gholamreza and Zhuang, Bohan},
+  journal={arXiv preprint arXiv:2601.05172},
+  year={2026}
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- More Visualization -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-10" style="margin: 15px auto;">
+
+          <h3>More Visualization</h3>
+          <hr style="margin-top: 0px" />
+
+          <div class="row" style="margin: 20px 0;">
+            <div class="col-md-12 text-center">
+              <img src="assets/supp/cov_supp-crop_01.png" alt="Visualization 1"
+                style="max-width: 100%; height: auto; margin-bottom: 20px;">
+            </div>
+          </div>
+
+          <div class="row" style="margin: 20px 0;">
+            <div class="col-md-12 text-center">
+              <img src="assets/supp/cov_supp-crop_02.png" alt="Visualization 2"
+                style="max-width: 100%; height: auto; margin-bottom: 20px;">
+            </div>
+          </div>
+
+          <div class="row" style="margin: 20px 0;">
+            <div class="col-md-12 text-center">
+              <img src="assets/supp/cov_supp-crop_03.png" alt="Visualization 3"
+                style="max-width: 100%; height: auto; margin-bottom: 20px;">
+            </div>
+          </div>
+
+          <div class="row" style="margin: 20px 0;">
+            <div class="col-md-12 text-center">
+              <img src="assets/supp/cov_supp-crop_04.png" alt="Visualization 4"
+                style="max-width: 100%; height: auto; margin-bottom: 20px;">
+            </div>
+          </div>
+
+          <br>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function copyBibTeX() {
+      const bibtex = document.getElementById('bibtex').innerText;
+      const button = document.getElementById('copyBtn');
+      navigator.clipboard.writeText(bibtex).then(function () {
+        const originalText = button.innerText;
+        button.innerText = 'Copied!';
+        button.style.backgroundColor = '#28a745';
+        setTimeout(function () {
+          button.innerText = originalText;
+          button.style.backgroundColor = '#429dda';
+        }, 2000);
+      }).catch(function (err) {
+        console.error('Failed to copy: ', err);
+      });
+    }
+  </script>
+
+  <footer class="text-center" style="margin-bottom: 10px">
+    Thanks to
+    <a href="https://lioryariv.github.io/">Lior Yariv</a>
+    for the website template.
+    Thanks to the
+    <a href="https://isshikihugh.github.io/HSMR/">HSMR</a>'s
+    and
+    <a href="https://zju3dv.github.io/4k4d/">4K4D</a>'s
+    project pages for the useful add-ons.
+  </footer>
+
+</body>
+
+</html>
