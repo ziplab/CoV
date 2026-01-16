@@ -22,7 +22,7 @@
   <link href="css/theme.css" rel="stylesheet" />
 
   <link href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap"
     rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" rel="stylesheet" />
@@ -79,6 +79,14 @@
                     <a class="btn btn-large btn-light" href="https://github.com/ziplab/CoV" role="button">
                       <i class="fas fa-code"></i>
                       <b>Code</b>
+                    </a>
+                  </p>
+                </div>
+                <div class="column">
+                  <p class="mb-5">
+                    <a class="btn btn-large btn-light" href="https://x.com/i/status/2010272468762800264" role="button">
+                      <i class="fa-brands fa-x-twitter"></i>
+                      <b>Trending on X</b>
                     </a>
                   </p>
                 </div>
@@ -232,29 +240,6 @@
       </div>
   </section>
 
-  <!-- Citing -->
-  <div class="container">
-    <div class="row">
-      <div class="col-md-10" style="margin: auto;">
-
-        <h3>Citation</h3>
-        <hr style="margin-top: 0px" />
-        <div style="position: relative;">
-          <button id="copyBtn" onclick="copyBibTeX()"
-            style="position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #429dda; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px;">
-            Copy
-          </button>
-          <pre id="bibtex" style="background-color: #e9eeef; padding: 1.5em 1.5em; border-radius: 15px; margin: 0;"><code>@article{zhao2026cov,
-  title={CoV: Chain-of-View Prompting for Spatial Reasoning},
-  author={Zhao, Haoyu and Liu, Akide and Zhang, Zeyu and Wang, Weijie and Chen, Feng and Zhu, Ruihan and Haffari, Gholamreza and Zhuang, Bohan},
-  journal={arXiv preprint arXiv:2601.05172},
-  year={2026}
-}</code></pre>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- More Visualization -->
   <section>
     <div class="container">
@@ -298,6 +283,29 @@
     </div>
   </section>
 
+  <!-- Citing -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10" style="margin: auto;">
+
+        <h3>Citation</h3>
+        <hr style="margin-top: 0px" />
+        <div style="position: relative;">
+          <button id="copyBtn" onclick="copyBibTeX()"
+            style="position: absolute; top: 10px; right: 10px; padding: 5px 10px; background-color: #429dda; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px;">
+            Copy
+          </button>
+          <pre id="bibtex" style="background-color: #e9eeef; padding: 1.5em 1.5em; border-radius: 15px; margin: 0;"><code>@article{zhao2026cov,
+  title={CoV: Chain-of-View Prompting for Spatial Reasoning},
+  author={Zhao, Haoyu and Liu, Akide and Zhang, Zeyu and Wang, Weijie and Chen, Feng and Zhu, Ruihan and Haffari, Gholamreza and Zhuang, Bohan},
+  journal={arXiv preprint arXiv:2601.05172},
+  year={2026}
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     function copyBibTeX() {
       const bibtex = document.getElementById('bibtex').innerText;
@@ -319,12 +327,12 @@
   <footer class="text-center" style="margin-bottom: 10px">
     Thanks to
     <a href="https://lioryariv.github.io/">Lior Yariv</a>
-    for the website template.
+    for the original website template.
     Thanks to the
-    <a href="https://isshikihugh.github.io/HSMR/">HSMR</a>'s
+    <a href="https://github.com/ziplab/VolSplat">VolSplat</a>'s
     and
-    <a href="https://zju3dv.github.io/4k4d/">4K4D</a>'s
-    project pages for the useful add-ons.
+    <a href="https://lhmd.top/zpressor/">ZPressor</a>'s
+    custom theme and useful add-ons.
   </footer>
 
 </body>
