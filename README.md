@@ -7,6 +7,8 @@ This is the code repository for the paper:
 >
 > \*Equal contribution. †Corresponding author.
 >
+> ***ACL 2026 Findings***
+>
 > **[[arXiv]](https://arxiv.org/abs/2601.05172)** **[[HF Paper]](https://huggingface.co/papers/2601.05172)** **[[Website]](https://ziplab.co/CoV/)** **[[Trending on X]](https://x.com/i/status/2010272468762800264)**
 > 
 
